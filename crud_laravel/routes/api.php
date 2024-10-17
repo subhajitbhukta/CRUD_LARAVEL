@@ -9,4 +9,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/show', [Crud::class, 'getData']);
-Route::post('/store-data', [Crud::class, 'store']);
+Route::post('/register', [Crud::class, 'store']);
+Route::post('/login', [Crud::class, 'login']);

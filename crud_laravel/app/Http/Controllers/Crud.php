@@ -13,6 +13,7 @@ class Crud extends Controller
         return "This is for getting data";
     }
 
+    // Register API
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -25,20 +26,40 @@ class Crud extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        Student::create([
+        $student=Student::create([
             'name' => $validatedData['name'],
             'phone' => $validatedData['phone'],
             'email' => $validatedData['email'],
             'address' => $validatedData['address'],
             'gender' => $validatedData['gender'],
             'dob' => $validatedData['dob'],
-            'password' => Hash::make($validatedData['password']),
+            'password' => bcrypt($validatedData['password']),
         ]);
 
-        // return "storing data";
+        $token = $student->createToken('crud_laravel')->plainTextToken;
 
         return response()->json([
             'message' => 'Student record added successfully!',
+            'token' => $token,
+        ], 201);
+    }
+
+    // Login API
+    public function login(Request $req){
+        $std=Student::where('email',$req->email)->first();
+
+        if(!$std || !Hash::check($req->password, $std->password)){
+
+            return response()->json([
+                'message' => 'Email or Password is invalid!',
+            ], 400);
+
+        }
+        // return $std;
+        $token = $std->createToken('crud_laravel')->plainTextToken;
+        return response()->json([
+            'message' => 'Login successful!',
+            'token' => $token,
         ], 201);
     }
 }
