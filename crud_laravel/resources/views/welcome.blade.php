@@ -1,4 +1,5 @@
 @include('layouts.navbar')
+
      <section class="bg-cover bg-center h-screen" style="background-image: url('https://media.istockphoto.com/id/1163985429/photo/group-of-schoolboys-and-schoolgirls-at-school-campus.jpg?s=612x612&w=0&k=20&c=gF0_Qpp1uZ6VAyOi90xprZISgaiLxnpssWky0zJ6gRY=');">
         <div class="flex items-center justify-center h-full bg-black bg-opacity-30">
             <div class="text-center text-white">

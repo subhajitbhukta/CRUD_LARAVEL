@@ -9,6 +9,5 @@ Route::get('/register',[userController::class,'register'])->name('registration')
 Route::get('/update',[userController::class,'update'])->name('update');
 Route::post('/register',[userController::class,'disp'])->name("register");
 
-Route::group(['middleware'=>"auth:sanctum"],function(){
-    Route::get('/welcome',[userController::class,'show'])->name('home');
-});
+Route::get('/welcome',[userController::class,'show'])->middleware("auth:sanctum");
+// Route::get('/welcome', [userController::class, 'show']);

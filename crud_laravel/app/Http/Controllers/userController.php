@@ -9,8 +9,10 @@ class userController extends Controller
     public function user(){
         return view('login');
     }
-    public function show(){
-        return view('welcome');
+    public function show(Request $request){
+        // die;
+        $user = $request->user();
+        return view('welcome', ['user' => $user]);
     }
     public function register(){
         return view('registration');

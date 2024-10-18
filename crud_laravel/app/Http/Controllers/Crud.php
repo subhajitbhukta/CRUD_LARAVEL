@@ -18,15 +18,15 @@ class Crud extends Controller
     public function store(Request $request)
     {
         $validatedData=$request;
-        // $validatedData = $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'phone' => 'required|numeric|digits:10',
-        //     'email' => 'required|email|unique:students,email',
-        //     'address' => 'required|string|max:500',
-        //     'gender' => 'required|in:m,f,o',
-        //     'dob' => 'required|date|before:today',
-        //     'password' => 'required|string|min:8|confirmed',
-        // ]);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|numeric|digits:10',
+            'email' => 'required|email|unique:students,email',
+            'address' => 'required|string|max:500',
+            'gender' => 'required|in:m,f,o',
+            'dob' => 'required|date|before:today',
+            'password' => 'required|string|min:8',
+        ]);
 
 
         $student=Student::create([
@@ -52,6 +52,8 @@ class Crud extends Controller
         
         $std=Student::where('email',$req->email)->first();
 
+        //dd([$std,$req->email,Hash::check($req->password, $std->password)]);
+
         if(!$std || !Hash::check($req->password, $std->password)){
 
             return redirect('/')->withErrors([
@@ -60,9 +62,11 @@ class Crud extends Controller
 
         }
         $token = $std->createToken('crud_laravel')->plainTextToken;
-        $cookie = cookie('auth_token', $token, 60 * 24);
+        $cookie = cookie('auth_token', $token, 60 * 1000 * 24);
+        dd($cookie);
         
         return redirect('/welcome')->cookie($cookie);
+
     }
 
     // Log Out

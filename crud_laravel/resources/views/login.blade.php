@@ -27,7 +27,7 @@
                 </div>
             @endif
 
-            <form action="{{ url('/api/login') }}" method="POST">
+            <form action="{{ url('/api/auth/login') }}" method="POST">
                 @csrf
 
                 <!-- Email -->

@@ -15,7 +15,7 @@
                 </div>
             @endif
 
-            <form action="" method="POST" class="space-y-6">
+            <form action="{{ route('api.update') }}" method="POST" class="space-y-6">
                 @csrf
                 @method('PUT')
 
@@ -30,15 +30,21 @@
                     <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
                     <input type="tel" name="phone" id="phone" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" value="{{ old('phone', '123-456-7890') }}" placeholder="Enter your phone number" required>
                 </div>
-
+                
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" name="email" id="email" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" value="{{ old('email') }}" placeholder="Enter your email">
+                </div>
+                
                 <!-- Gender -->
                 <div>
                     <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
                     <select name="gender" id="gender" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
                         <option value="" disabled>Select your gender</option>
-                        <option value="male" {{ old('gender', 'male') == 'male' ? 'selected' : '' }}>Male</option>
-                        <option value="female" {{ old('gender', 'female') == 'female' ? 'selected' : '' }}>Female</option>
-                        <option value="other" {{ old('gender', 'other') == 'other' ? 'selected' : '' }}>Other</option>
+                        <option value="male" {{ old('gender', 'male') == 'm' ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ old('gender', 'female') == 'f' ? 'selected' : '' }}>Female</option>
+                        <option value="other" {{ old('gender', 'other') == 'o' ? 'selected' : '' }}>Other</option>
                     </select>
                 </div>
 

@@ -11,13 +11,13 @@ class Student extends Authenticatable
 {
     use Notifiable, HasApiTokens;
 
-    protected $table = 'students'; // Corrected from 'student' to 'students'
+    protected $table = 'students';
     protected $primaryKey = 'id';
     
     protected $fillable = [
         'name', 'phone', 'email', 'address', 'gender', 'dob', 'password',
     ];
-
+    
     // protected $hidden = [
     //     'password',
     // ];

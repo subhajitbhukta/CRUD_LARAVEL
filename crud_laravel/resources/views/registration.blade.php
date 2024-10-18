@@ -15,7 +15,7 @@
                 </div>
             @endif
            
-            <form action="{{ url('/api/register') }}" method="POST" class="space-y-6">
+            <form action="{{ url('/api/auth/register') }}" method="POST" class="space-y-6">
                 @csrf
                 <!-- Full Name -->
                 <div>
