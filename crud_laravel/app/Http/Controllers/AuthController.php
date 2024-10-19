@@ -61,7 +61,6 @@ class AuthController extends Controller
             'message' => 'Successfully created user!',
             'accessToken'=> $token,
             ],201);
-        // return redirect('/welcome');
 
     }
 
@@ -77,7 +76,8 @@ class AuthController extends Controller
         if(!Auth::guard('student')->attempt($credentials))
         {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
+                'status' => 401,
             ],401);
         }
 
@@ -89,7 +89,8 @@ class AuthController extends Controller
         return response()->json([
         'accessToken' =>$token,
         'token_type' => 'Bearer',
-        ]);
+        'status' => 200,
+        ],200);
 
         // return redirect('/welcome');
     }
@@ -106,7 +107,7 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
 
         return response()->json([
-        'message' => 'Successfully logged out'
+            'message' => 'Successfully logged out'
         ]);
 
     }

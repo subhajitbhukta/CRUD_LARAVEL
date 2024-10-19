@@ -17,6 +17,8 @@
            
             <form action="{{ url('/api/auth/register') }}" method="POST" class="space-y-6">
                 @csrf
+            <!-- <form method="POST" class="space-y-6">
+                @csrf -->
                 <!-- Full Name -->
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
@@ -98,6 +100,9 @@
             svg.setAttribute('d',icon);
             this.classList.toggle('text-blue-700');
         });
+
+
+
     </script>
 
 </body>

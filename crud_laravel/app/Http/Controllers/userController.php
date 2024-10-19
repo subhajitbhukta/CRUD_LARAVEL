@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class userController extends Controller
 {
@@ -10,9 +11,7 @@ class userController extends Controller
         return view('login');
     }
     public function show(Request $request){
-        // die;
-        $user = $request->user();
-        return view('welcome', ['user' => $user]);
+        return view('welcome');    
     }
     public function register(){
         return view('registration');

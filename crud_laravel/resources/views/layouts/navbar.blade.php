@@ -20,14 +20,31 @@
                     Profile Update
                 </button>
             </a>
-            <a href="{{ url('/api/auth/logout')}}" class="">
-                <button class="bg-red-600 hover:bg-red-800 p-2 text-white rounded-lg">
+            <!-- <a href="{{ url('/api/auth/logout')}}" class=""> -->
+                <button id="logout" class="bg-red-600 hover:bg-red-800 p-2 text-white rounded-lg">
                     logout
                 </button>
-            </a>
+            <!-- </a> -->
             </div>
         </div>
     </nav>
-
+    <script>
+        document.querySelector("#logout").addEventListener("click",()=>{
+            console.log("logout");
+            fetch("http://localhost:8000/api/auth/logout", {
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem('dsbcIndia')}`,
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then((data) => {
+                console.log('Logout success:', data);
+                sessionStorage.removeItem('dsbcIndia');
+                window.location.href= 'http://'+window.location.hostname+':8000/';
+            })
+            .catch(error => console.error('Error:', error));
+        })
+    </script>
 </body>
 </html>
